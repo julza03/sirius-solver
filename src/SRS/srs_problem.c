@@ -89,7 +89,7 @@ int mallocAndCopyString(const char * sourceString, char ** targetString) {
 	size_t stringSize = strlen(sourceString) + 1;
 	size_t stringSizeInBytes = stringSize * sizeof(char);
 	(*targetString) = malloc(stringSizeInBytes);
-#ifdef __unix__
+#if defined(__unix__) || defined(__unix) ||(defined(__APPLE__) && defined(__MACH__))
 	strcpy((*targetString), sourceString);
 #else
 	strcpy_s((*targetString), stringSizeInBytes, sourceString);
